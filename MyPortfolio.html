@@ -396,6 +396,21 @@
       color: #8B7D72;
     }
 
+    .achievement-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .achievement-tags .tech-tag {
+      font-size: 10px;
+      padding: 3px 8px;
+      background: transparent;
+      border: 1px solid #C4B7D5;
+      color: #9B8DAE;
+    }
+
     .project-link {
       display: inline-flex;
       align-items: center;
@@ -427,71 +442,95 @@
     }
 
     /* スキル */
-    .skill-category {
-      margin-bottom: 28px;
+    .skill-theme-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .skill-category:last-child {
-      margin-bottom: 0;
-    }
-
-    .skill-category-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #C4B7D5;
-      margin-bottom: 16px;
+    .skill-theme-card {
       display: flex;
       align-items: center;
-      gap: 8px;
+      padding: 20px 24px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      border-left: 4px solid transparent;
+      gap: 28px;
     }
 
-    .skill-item {
-      margin-bottom: 16px;
+    .skill-theme-card.coral    { border-left-color: #F5A89A; }
+    .skill-theme-card.mint     { border-left-color: #A8D8C8; }
+    .skill-theme-card.lavender { border-left-color: #C4B7D5; }
+    .skill-theme-card.blue     { border-left-color: #7EB8D8; }
+    .skill-theme-card.gold     { border-left-color: #E8C87A; }
+
+    .skill-theme-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5C4D42;
+      min-width: 90px;
+      flex-shrink: 0;
     }
 
-    .skill-item:last-child {
-      margin-bottom: 0;
+    .skill-theme-items {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      flex: 1;
     }
 
-    .skill-header {
+    .skill-theme-item {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    .skill-name {
-      font-size: 14px;
-      font-weight: 500;
+    .skill-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
     }
 
-    .skill-desc {
+    .skill-dot.coral    { background: linear-gradient(135deg, #F5A89A, #F8C4BA); }
+    .skill-dot.mint     { background: linear-gradient(135deg, #A8D8C8, #C5E8DD); }
+    .skill-dot.lavender { background: linear-gradient(135deg, #C4B7D5, #D9D0E6); }
+    .skill-dot.blue     { background: linear-gradient(135deg, #7EB8D8, #A5D0E8); }
+    .skill-dot.gold     { background: linear-gradient(135deg, #E8C87A, #F0D99A); }
+
+    .skill-theme-item-name {
       font-size: 12px;
-      color: #8B7D72;
+      font-weight: 600;
+      color: #5C4D42;
+      margin-bottom: 2px;
     }
 
-    .skill-bar {
-      height: 8px;
-      background: #F5F0EB;
-      border-radius: 4px;
-      overflow: hidden;
+    .skill-theme-item-desc {
+      font-size: 10px;
+      color: #A89E95;
     }
 
-    .skill-bar-fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.6s ease;
-    }
+    @media (max-width: 600px) {
+      .skill-theme-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
 
-    .skill-bar-fill.coral {
-      background: linear-gradient(90deg, #F5A89A, #F8C4BA);
-    }
+      .skill-theme-label {
+        min-width: auto;
+      }
 
-    .skill-bar-fill.mint {
-      background: linear-gradient(90deg, #A8D8C8, #C5E8DD);
-    }
-
-    .skill-bar-fill.lavender {
-      background: linear-gradient(90deg, #C4B7D5, #D9D0E6);
+      .skill-theme-items {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     /* SNS */
@@ -634,59 +673,68 @@
             <i class="fas fa-trophy"></i>主な案件実績
           </h3>
 
-          <!-- 作業員案件 -->
+          <!-- 案件実績 -->
           <div class="achievement-category">
-            <div class="category-header">
-              <div class="category-icon dx">
-                <i class="fas fa-rocket"></i>
-              </div>
-              <p class="category-title">実装実績</p>
-            </div>
             <div class="achievement-grid">
               <div class="achievement-card">
                 <div class="achievement-header">
                   <div class="achievement-icon dx">
                     <i class="fas fa-calendar-check"></i>
                   </div>
-                  <p class="achievement-title">予約台帳のデジタル化</p>
+                  <p class="achievement-title">予約管理Webアプリ化による業務改善</p>
                 </div>
-                <p class="achievement-desc">GASでWebアプリを開発。リアルタイム確認・どこでも閲覧可能・帳票自動作成により、業務フロー改善・工数削減を実現</p>
+                <p class="achievement-desc">紙での予約管理業務をWebアプリ化。リアルタイム共有・帳票自動作成により、現場の作業負担軽減と業務効率化を実現。</p>
+                <div class="achievement-tags">
+                  <span class="tech-tag">#業務設計</span>
+                  <span class="tech-tag">#GAS</span>
+                  <span class="tech-tag">#HTML/CSS</span>
+                  <span class="tech-tag">#JavaScript</span>
+                  <span class="tech-tag">#スプレッドシート</span>
+                </div>
               </div>
               <div class="achievement-card">
                 <div class="achievement-header">
                   <div class="achievement-icon dx">
                     <i class="fas fa-chart-bar"></i>
                   </div>
-                  <p class="achievement-title">ETL〜ダッシュボード構築</p>
+                  <p class="achievement-title">経理処理の効率化支援</p>
                 </div>
-                <p class="achievement-desc">Pythonでデータ加工・Power BIで可視化。リアルタイム進捗確認・別資料作成が不要となり、業務効率化を実現</p>
+                <p class="achievement-desc">経理業務の課題整理から改善案検討までを支援。自動化PoC＋代替策の提案とROI提示により、実行可能な業務改善を推進。</p>
+                <div class="achievement-tags">
+                  <span class="tech-tag">#業務設計</span>
+                  <span class="tech-tag">#Python</span>
+                  <span class="tech-tag">#Streamlit</span>
+                </div>
               </div>
               <div class="achievement-card">
                 <div class="achievement-header">
                   <div class="achievement-icon dx">
                     <i class="fas fa-calculator"></i>
                   </div>
-                  <p class="achievement-title">経理処理自動計算ツール</p>
+                  <p class="achievement-title">データ活用・可視化による業務改善</p>
                 </div>
-                <p class="achievement-desc">PoCで自動計算ツールを開発。効果検証を行い、改善実現案とROIを提示</p>
+                <p class="achievement-desc">業務データの取得～ダッシュボード可視化を一貫構築。管理者・現場双方が進捗をリアルタイムに把握でき、管理・報告業務の工数削減を実現。</p>
+                <div class="achievement-tags">
+                  <span class="tech-tag">#PostgreSQL</span>
+                  <span class="tech-tag">#PowerShell</span>
+                  <span class="tech-tag">#Python</span>
+                  <span class="tech-tag">#Power BI</span>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <!-- PM案件 -->
-          <div class="achievement-category">
-            <div class="category-header">
-              <div class="category-icon ds">
-                <i class="fas fa-brain"></i>
+              <div class="achievement-card">
+                <div class="achievement-header">
+                  <div class="achievement-icon dx">
+                    <i class="fas fa-calculator"></i>
+                  </div>
+                  <p class="achievement-title">分析・AI活用プロジェクト支援（PM）</p>
+                </div>
+                <p class="achievement-desc">PMとしてAI活用テーマの整理・業務設計から併走し、案件創出～PoC～運用化・現場定着までサポート。社内PM育成も担当。</p>
+                <div class="achievement-tags">
+                  <span class="tech-tag">#業務設計</span>
+                  <span class="tech-tag">#顧客折衝</span>
+                  <span class="tech-tag">#併走支援</span>
+                </div>
               </div>
-              <p class="category-title">PM実績</p>
-            </div>
-            <div class="badge-list">
-              <span class="badge"><i class="fas fa-user-minus"></i>離脱予測</span>
-              <span class="badge"><i class="fas fa-comments"></i>LLM感情分析</span>
-              <span class="badge"><i class="fas fa-chart-line"></i>効果検証</span>
-              <span class="badge"><i class="fas fa-triangle-exclamation"></i>異常検知</span>
-              <span class="badge"><i class="fas fa-users"></i>社内PM育成</span>
             </div>
           </div>
         </div>
@@ -696,96 +744,153 @@
     <!-- 保有スキル -->
     <section class="section">
       <h2 class="section-title">保有スキル</h2>
-      <div class="card">
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-chart-line"></i>データ分析
-          </h3>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">Python</span>
-              <span class="skill-desc">データ集計・分析の自動化</span>
+      <div class="skill-theme-list">
+
+        <div class="skill-theme-card coral">
+          <span class="skill-theme-label">分析</span>
+          <div class="skill-theme-items">
+            <div class="skill-theme-item">
+              <div class="skill-dot coral"><i class="fab fa-python"></i></div>
+              <span class="skill-theme-item-name">Python</span>
+              <span class="skill-theme-item-desc">加工・集計・分析</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill coral" style="width: 90%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot coral"><i class="fas fa-file-excel"></i></div>
+              <span class="skill-theme-item-name">Excel</span>
+              <span class="skill-theme-item-desc">加工・集計・分析</span>
             </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">SQL</span>
-              <span class="skill-desc">データベースからの抽出・加工</span>
+            <div class="skill-theme-item">
+              <div class="skill-dot coral"><i class="fas fa-table"></i></div>
+              <span class="skill-theme-item-name">SpreadSheet</span>
+              <span class="skill-theme-item-desc">加工・集計・分析</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill coral" style="width: 85%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot coral"><i class="fas fa-database"></i></div>
+              <span class="skill-theme-item-name">BigQuery</span>
+              <span class="skill-theme-item-desc">データ抽出</span>
             </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">Excel / スプレッドシート</span>
-              <span class="skill-desc">関数・ピボット・マクロ</span>
+            <div class="skill-theme-item">
+              <div class="skill-dot coral"><i class="fas fa-flask"></i></div>
+              <span class="skill-theme-item-name">効果検証</span>
+              <span class="skill-theme-item-desc">A/Bテスト等</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill coral" style="width: 95%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">統計分析</span>
-              <span class="skill-desc">効果検証、ターゲット選定</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill coral" style="width: 95%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot coral"><i class="fas fa-chart-line"></i></div>
+              <span class="skill-theme-item-name">統計分析</span>
+              <span class="skill-theme-item-desc">要因分析等</span>
             </div>
           </div>
         </div>
 
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-chart-pie"></i>データ可視化
-          </h3>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">Power BI</span>
-              <span class="skill-desc">インタラクティブなダッシュボード作成</span>
+        <div class="skill-theme-card mint">
+          <span class="skill-theme-label">可視化</span>
+          <div class="skill-theme-items">
+            <div class="skill-theme-item">
+              <div class="skill-dot mint"><i class="fas fa-chart-bar"></i></div>
+              <span class="skill-theme-item-name">Power BI</span>
+              <span class="skill-theme-item-desc">ダッシュボード</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill mint" style="width: 85%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot mint"><i class="fas fa-chart-pie"></i></div>
+              <span class="skill-theme-item-name">Qlik Sense</span>
+              <span class="skill-theme-item-desc">ダッシュボード</span>
             </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">Looker Studio</span>
-              <span class="skill-desc">Googleデータとの連携レポート</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill mint" style="width: 80%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot mint"><i class="fas fa-chart-area"></i></div>
+              <span class="skill-theme-item-name">Looker Studio</span>
+              <span class="skill-theme-item-desc">ダッシュボード</span>
             </div>
           </div>
         </div>
 
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-cogs"></i>業務改善
-          </h3>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">RPA（UiPath / Power Automate）</span>
-              <span class="skill-desc">定型業務の自動化</span>
+        <div class="skill-theme-card lavender">
+          <span class="skill-theme-label">自動化</span>
+          <div class="skill-theme-items">
+            <div class="skill-theme-item">
+              <div class="skill-dot lavender"><i class="fab fa-python"></i></div>
+              <span class="skill-theme-item-name">Python</span>
+              <span class="skill-theme-item-desc">処理自動化</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill lavender" style="width: 80%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot lavender"><i class="fas fa-bolt"></i></div>
+              <span class="skill-theme-item-name">PowerAutomate</span>
+              <span class="skill-theme-item-desc">処理自動化</span>
             </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">業務フロー設計</span>
-              <span class="skill-desc">現状分析・改善提案</span>
+            <div class="skill-theme-item">
+              <div class="skill-dot lavender"><i class="fas fa-code"></i></div>
+              <span class="skill-theme-item-name">GAS</span>
+              <span class="skill-theme-item-desc">処理自動化</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill lavender" style="width: 90%;"></div>
+            <div class="skill-theme-item">
+              <div class="skill-dot lavender"><i class="fas fa-terminal"></i></div>
+              <span class="skill-theme-item-name">PowerShell</span>
+              <span class="skill-theme-item-desc">システム操作</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot lavender"><i class="fas fa-database"></i></div>
+              <span class="skill-theme-item-name">PostgreSQL</span>
+              <span class="skill-theme-item-desc">データベース管理</span>
             </div>
           </div>
         </div>
+
+        <div class="skill-theme-card blue">
+          <span class="skill-theme-label">Webアプリ</span>
+          <div class="skill-theme-items">
+            <div class="skill-theme-item">
+              <div class="skill-dot blue"><i class="fab fa-python"></i></div>
+              <span class="skill-theme-item-name">Python</span>
+              <span class="skill-theme-item-desc">バックエンド</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot blue"><i class="fas fa-desktop"></i></div>
+              <span class="skill-theme-item-name">Streamlit</span>
+              <span class="skill-theme-item-desc">バックエンド・　フロントエンド</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot blue"><i class="fas fa-code"></i></div>
+              <span class="skill-theme-item-name">GAS</span>
+              <span class="skill-theme-item-desc">バックエンド</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot blue"><i class="fab fa-html5"></i></div>
+              <span class="skill-theme-item-name">HTML/CSS</span>
+              <span class="skill-theme-item-desc">フロントエンド</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot blue"><i class="fab fa-js"></i></div>
+              <span class="skill-theme-item-name">JavaScript</span>
+              <span class="skill-theme-item-desc">フロントエンド</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-theme-card gold">
+          <span class="skill-theme-label">AI/DX活用</span>
+          <div class="skill-theme-items">
+            <div class="skill-theme-item">
+              <div class="skill-dot gold"><i class="fas fa-robot"></i></div>
+              <span class="skill-theme-item-name">生成AI</span>
+              <span class="skill-theme-item-desc">テキスト分類</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot gold"><i class="fas fa-user-minus"></i></div>
+              <span class="skill-theme-item-name">離脱予測</span>
+              <span class="skill-theme-item-desc">マーケティング　　効率化</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot gold"><i class="fas fa-triangle-exclamation"></i></div>
+              <span class="skill-theme-item-name">異常検知</span>
+              <span class="skill-theme-item-desc">データ監視</span>
+            </div>
+            <div class="skill-theme-item">
+              <div class="skill-dot gold"><i class="fas fa-diagram-project"></i></div>
+              <span class="skill-theme-item-name">業務設計</span>
+              <span class="skill-theme-item-desc">改善提案</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
