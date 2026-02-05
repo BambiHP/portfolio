@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ポートフォリオ | 業務改善DX支援・データサイエンティスト</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background-color: #FDF8F3;
+      color: #5C4D42;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* ヘッダー */
+    .header {
+      text-align: center;
+      padding: 60px 0 80px;
+    }
+
+    .profile-image {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 30px rgba(245, 168, 154, 0.3);
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .name {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #5C4D42;
+    }
+
+    .title {
+      font-size: 16px;
+      color: #8B7D72;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #F5A89A, #A8D8C8);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .catchphrase {
+      font-size: 18px;
+      color: #5C4D42;
+      font-weight: 500;
+    }
+
+    /* セクション共通 */
+    .section {
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, #F5A89A, #A8D8C8);
+      border-radius: 2px;
+      margin: 12px auto 0;
+    }
+
+    /* カード */
+    .card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 経歴・実績 */
+    .career-section {
+      margin-bottom: 40px;
+    }
+
+    .career-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .subsection-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #F5A89A;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, #A8D8C8, #C4B7D5);
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      background: #A8D8C8;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 2px 8px rgba(168, 216, 200, 0.4);
+    }
+
+    .timeline-period {
+      font-size: 13px;
+      color: #8B7D72;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: #8B7D72;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .achievement-card {
+      padding: 20px;
+      background: linear-gradient(135deg, #FFF9F5 0%, #FFFFFF 100%);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .achievement-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .achievement-tag.dx {
+      background: linear-gradient(135deg, #A8D8C8, #8FCBB8);
+      color: white;
+    }
+
+    .achievement-tag.ds {
+      background: linear-gradient(135deg, #C4B7D5, #B0A0C8);
+      color: white;
+    }
+
+    .achievement-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .achievement-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .achievement-icon.dx {
+      background: linear-gradient(135deg, #A8D8C8, #8FCBB8);
+    }
+
+    .achievement-icon.ds {
+      background: linear-gradient(135deg, #C4B7D5, #B0A0C8);
+    }
+
+    .achievement-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #5C4D42;
+    }
+
+    .achievement-desc {
+      font-size: 13px;
+      color: #8B7D72;
+      line-height: 1.6;
+    }
+
+    /* 本業実績（バッジ形式） */
+    .achievement-category {
+      margin-bottom: 32px;
+    }
+
+    .achievement-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #F5F0EB;
+    }
+
+    .category-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+    }
+
+    .category-icon.dx {
+      background: linear-gradient(135deg, #A8D8C8, #8FCBB8);
+    }
+
+    .category-icon.ds {
+      background: linear-gradient(135deg, #C4B7D5, #B0A0C8);
+    }
+
+    .category-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #5C4D42;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #5C4D42;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .badge i {
+      font-size: 12px;
+      color: #C4B7D5;
+    }
+
+    /* 個人開発カード */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #F5A89A, #F8C4BA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #5C4D42;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: #8B7D72;
+      line-height: 1.7;
+      flex-grow: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tech-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: #FFF9F5;
+      border-radius: 12px;
+      color: #8B7D72;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #F5A89A;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .project-link:hover {
+      color: #E8968A;
+    }
+
+    .project-link.coming-soon {
+      color: #C4C4C4;
+      cursor: default;
+    }
+
+    @media (max-width: 600px) {
+      .achievement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* スキル */
+    .skill-category {
+      margin-bottom: 28px;
+    }
+
+    .skill-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-category-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #C4B7D5;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-item {
+      margin-bottom: 16px;
+    }
+
+    .skill-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .skill-desc {
+      font-size: 12px;
+      color: #8B7D72;
+    }
+
+    .skill-bar {
+      height: 8px;
+      background: #F5F0EB;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .skill-bar-fill.coral {
+      background: linear-gradient(90deg, #F5A89A, #F8C4BA);
+    }
+
+    .skill-bar-fill.mint {
+      background: linear-gradient(90deg, #A8D8C8, #C5E8DD);
+    }
+
+    .skill-bar-fill.lavender {
+      background: linear-gradient(90deg, #C4B7D5, #D9D0E6);
+    }
+
+    /* SNS */
+    .sns-list {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sns-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #5C4D42;
+      padding: 20px 24px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      min-width: 100px;
+    }
+
+    .sns-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .sns-link i {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .sns-link span {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .sns-link.twitter i { color: #1DA1F2; }
+    .sns-link.github i { color: #333; }
+    .sns-link.zenn i { color: #3EA8FF; }
+    .sns-link.note i { color: #41C9B4; }
+    .sns-link.email i { color: #F5A89A; }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #8B7D72;
+      font-size: 13px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .header {
+        padding: 40px 0 60px;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+        font-size: 48px;
+      }
+
+      .name {
+        font-size: 26px;
+      }
+
+      .section {
+        margin-bottom: 60px;
+      }
+
+      .card {
+        padding: 24px;
+        border-radius: 16px;
+      }
+
+      .sns-list {
+        gap: 12px;
+      }
+
+      .sns-link {
+        padding: 16px 20px;
+        min-width: 80px;
+      }
+
+      .sns-link i {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <header class="header">
+      <div class="profile-image">
+        <img src="icon/profile-image.png" alt="プロフィール画像">
+      </div>
+      <h1 class="name">Bambi</h1>
+      <p class="title">データサイエンティスト / 業務改善DX支援 </p>
+      <div class="divider"></div>
+      <p class="catchphrase">現場の"困った"をデータと仕組みで解決します</p>
+    </header>
+
+    <!-- 経歴・実績 -->
+    <section class="section">
+      <h2 class="section-title">経歴・実績</h2>
+      <div class="card">
+        <div class="career-section">
+          <h3 class="subsection-title">
+            <i class="fas fa-briefcase"></i>職歴
+          </h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <p class="timeline-period">2024年2月 - 現在</p>
+              <p class="timeline-title">業務改善DX支援（副業）</p>
+              <p class="timeline-desc">中小企業向け業務改善・DX支援～ツール開発・保守</p>
+            </div>
+            <div class="timeline-item">
+              <p class="timeline-period">2022年8月 - 現在</p>
+              <p class="timeline-title">データサイエンティスト（本業）</p>
+              <p class="timeline-desc">データ分析・機械学習・LLM・BI案件（PM）</p>
+            </div>
+            <div class="timeline-item">
+              <p class="timeline-period">2018年4月 - 2022年6月</p>
+              <p class="timeline-title">SIer 法人営業（本業）</p>
+              <p class="timeline-desc">ITツールやDX支援案件の営業</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="career-section">
+          <h3 class="subsection-title">
+            <i class="fas fa-trophy"></i>主な案件実績
+          </h3>
+
+          <!-- 作業員案件 -->
+          <div class="achievement-category">
+            <div class="category-header">
+              <div class="category-icon dx">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <p class="category-title">実装実績</p>
+            </div>
+            <div class="achievement-grid">
+              <div class="achievement-card">
+                <div class="achievement-header">
+                  <div class="achievement-icon dx">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <p class="achievement-title">予約台帳のデジタル化</p>
+                </div>
+                <p class="achievement-desc">GASでWebアプリを開発。リアルタイム確認・どこでも閲覧可能・帳票自動作成により、業務フロー改善・工数削減を実現</p>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-header">
+                  <div class="achievement-icon dx">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                  <p class="achievement-title">ETL〜ダッシュボード構築</p>
+                </div>
+                <p class="achievement-desc">Pythonでデータ加工・Power BIで可視化。リアルタイム進捗確認・別資料作成が不要となり、業務効率化を実現</p>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-header">
+                  <div class="achievement-icon dx">
+                    <i class="fas fa-calculator"></i>
+                  </div>
+                  <p class="achievement-title">経理処理自動計算ツール</p>
+                </div>
+                <p class="achievement-desc">PoCで自動計算ツールを開発。効果検証を行い、改善実現案とROIを提示</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PM案件 -->
+          <div class="achievement-category">
+            <div class="category-header">
+              <div class="category-icon ds">
+                <i class="fas fa-brain"></i>
+              </div>
+              <p class="category-title">PM実績</p>
+            </div>
+            <div class="badge-list">
+              <span class="badge"><i class="fas fa-user-minus"></i>離脱予測</span>
+              <span class="badge"><i class="fas fa-comments"></i>LLM感情分析</span>
+              <span class="badge"><i class="fas fa-chart-line"></i>効果検証</span>
+              <span class="badge"><i class="fas fa-triangle-exclamation"></i>異常検知</span>
+              <span class="badge"><i class="fas fa-users"></i>社内PM育成</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 保有スキル -->
+    <section class="section">
+      <h2 class="section-title">保有スキル</h2>
+      <div class="card">
+        <div class="skill-category">
+          <h3 class="skill-category-title">
+            <i class="fas fa-chart-line"></i>データ分析
+          </h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Python</span>
+              <span class="skill-desc">データ集計・分析の自動化</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill coral" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">SQL</span>
+              <span class="skill-desc">データベースからの抽出・加工</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill coral" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Excel / スプレッドシート</span>
+              <span class="skill-desc">関数・ピボット・マクロ</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill coral" style="width: 95%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">統計分析</span>
+              <span class="skill-desc">効果検証、ターゲット選定</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill coral" style="width: 95%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="skill-category-title">
+            <i class="fas fa-chart-pie"></i>データ可視化
+          </h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Power BI</span>
+              <span class="skill-desc">インタラクティブなダッシュボード作成</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill mint" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Looker Studio</span>
+              <span class="skill-desc">Googleデータとの連携レポート</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill mint" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="skill-category-title">
+            <i class="fas fa-cogs"></i>業務改善
+          </h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">RPA（UiPath / Power Automate）</span>
+              <span class="skill-desc">定型業務の自動化</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill lavender" style="width: 80%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">業務フロー設計</span>
+              <span class="skill-desc">現状分析・改善提案</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill lavender" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 個人開発 -->
+    <section class="section">
+      <h2 class="section-title">作成物（個人開発）</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <p class="project-title">課題曲決めツール</p>
+          <p class="project-desc">各メンバーの出席率に合わせてリクエスト曲を重み付け、さらに各担当パートとの割り振りを自動決定</p>
+          <div class="project-tech">
+            <span class="tech-tag">GAS</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <span class="project-link coming-soon">
+            <i class="fas fa-clock"></i>Coming Soon
+          </span>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <p class="project-title">分析レポート自動作成</p>
+          <p class="project-desc">データを投入すると自動集計〜インサイト抽出・スライド作成まで自動化</p>
+          <div class="project-tech">
+            <span class="tech-tag">AIエージェント</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Dify</span>
+          </div>
+          <span class="project-link coming-soon">
+            <i class="fas fa-clock"></i>Coming Soon
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SNS・連絡先 -->
+    <section class="section">
+      <h2 class="section-title">SNS・連絡先</h2>
+      <div class="sns-list">
+        <a href="https://x.com/yokubaribambids" target="_blank" rel="noopener" class="sns-link twitter">
+          <i class="fab fa-x-twitter"></i>
+          <span>X</span>
+        </a>
+        <a href="https://github.com/yourname" target="_blank" rel="noopener" class="sns-link github">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://zenn.dev/bambi_ds" target="_blank" rel="noopener" class="sns-link zenn">
+          <i class="fas fa-book-open"></i>
+          <span>Zenn</span>
+        </a>
+        <a href="https://note.com/bambi_dx" target="_blank" rel="noopener" class="sns-link note">
+          <i class="fas fa-pen-fancy"></i>
+          <span>note</span>
+        </a>
+        <a href="mailto:bambi.hp.contact@gmail.com" class="sns-link email">
+          <i class="fas fa-envelope"></i>
+          <span>Email</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+      <p>&copy; 2026 Bambi. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
