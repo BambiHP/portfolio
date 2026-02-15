@@ -528,6 +528,105 @@
       margin-bottom: 20px;
     }
 
+    .modal-slider {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      background: #FDF8F3;
+    }
+
+    .modal-slider-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .modal-slider-slide {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .modal-slider-slide img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      display: block;
+      background: #FDF8F3;
+    }
+
+    .modal-slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8B7D72;
+      font-size: 12px;
+      z-index: 2;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-slider-btn:hover {
+      background: #F5A89A;
+      color: white;
+    }
+
+    .modal-slider-btn.prev { left: 8px; }
+    .modal-slider-btn.next { right: 8px; }
+
+    .modal-slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 0 4px;
+    }
+
+    .modal-slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: #E0D6CE;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    .modal-slider-dot.active {
+      background: #F5A89A;
+      transform: scale(1.2);
+    }
+
+    .modal-screenshot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #C4B7A8;
+      gap: 8px;
+      border: 2px dashed #E0D6CE;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .modal-screenshot-placeholder i {
+      font-size: 32px;
+    }
+
+    .modal-screenshot-placeholder span {
+      font-size: 12px;
+    }
+
     .modal-section-label {
       font-size: 13px;
       font-weight: 700;
@@ -1091,8 +1190,8 @@
           <div class="project-icon">
             <i class="fas fa-robot"></i>
           </div>
-          <p class="project-title">積読URL管理アプリ自動作成</p>
-          <p class="project-desc">URLを入力すると、「タイトル」「カテゴリ」「要約」を自動取得し登録。一覧で登録したURL一覧が見れる。
+          <p class="project-title">積読URL管理アプリ</p>
+          <p class="project-desc">「あとで読もう」と思ったURLを保存するだけで、LLMが自動でタイトル・カテゴリ・要約を生成。一覧画面で読了/読中/未読・お気にいり記事を管理できるWebアプリを作成。
           </p>
           <div class="project-tech">
             <span class="tech-tag">LLM(API)</span>
@@ -1112,7 +1211,7 @@
             <i class="fas fa-robot"></i>
           </div>
           <p class="project-title">Note記事自動作成エージェント</p>
-          <p class="project-desc">テーマ企画→構成作成→本文作成→添削→Notion登録までを自動化</p>
+          <p class="project-desc">テーマの企画から構成作成、本文執筆、添削、Notion登録までの記事作成プロセスを一気通貫で自動化するAIエージェントを作成</p>
           <div class="project-tech">
             <span class="tech-tag">AIエージェント</span>
             <span class="tech-tag">Dify</span>
@@ -1157,21 +1256,34 @@
       <p>&copy; 2026 Bambi. All rights reserved.</p>
     </footer>
   </div>
+
   <!-- モーダル: 積読URL管理アプリ -->
   <div class="modal-overlay" id="modal-tsundoku">
     <div class="modal-content">
       <button class="modal-close"><i class="fas fa-xmark"></i></button>
       <div class="modal-icon"><i class="fas fa-robot"></i></div>
-      <h3 class="modal-title">積読URL管理アプリ自動作成</h3>
+      <h3 class="modal-title">積読URL管理アプリ</h3>
       <p class="modal-desc">
-        「あとで読もう」と思ったURLを保存するだけで、LLMが自動でタイトル・カテゴリ・要約を生成。一覧画面で未読記事を効率的に管理できるWebアプリです。
+        「あとで読もう」と思ったURLを保存するだけで、LLMが自動でタイトル・カテゴリ・要約を生成。一覧画面で読了/読中/未読・お気にいり記事を管理できるWebアプリを作成。
       </p>
+      <div class="modal-slider">
+        <div class="modal-slider-track">
+          <div class="modal-slider-slide">
+            <img src="screenshots/tsundoku.png" alt="積読URL管理アプリ - 画面1">
+          </div>
+          <div class="modal-slider-slide">
+            <img src="screenshots/tsundoku2.png" alt="積読URL管理アプリ - 画面2">
+          </div>
+        </div>
+        <button class="modal-slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-slider-btn next"><i class="fas fa-chevron-right"></i></button>
+        <div class="modal-slider-dots"></div>
+      </div>
       <p class="modal-section-label"><i class="fas fa-lightbulb"></i>工夫した点</p>
       <ul class="modal-detail-list">
-        <li>LLM APIを活用し、URLの内容を自動解析・要約</li>
+        <li>Gemini APIでURLの内容を自動解析・要約</li>
         <li>カテゴリの自動分類で手動タグ付けの手間を削減</li>
         <li>SpreadSheetをDBとして活用し、低コストで運用可能な設計</li>
-        <li>Vibe Codingアプローチで高速プロトタイピング</li>
       </ul>
       <p class="modal-section-label"><i class="fas fa-layer-group"></i>技術スタック</p>
       <div class="modal-tech">
@@ -1195,8 +1307,15 @@
       <div class="modal-icon"><i class="fas fa-robot"></i></div>
       <h3 class="modal-title">Note記事自動作成エージェント</h3>
       <p class="modal-desc">
-        テーマの企画から構成作成、本文執筆、添削、Notion登録までの記事作成プロセスを一気通貫で自動化するAIエージェントです。
+        テーマの企画から構成作成、本文執筆、添削、Notion登録までの記事作成プロセスを一気通貫で自動化するAIエージェントを作成
       </p>
+      <div class="modal-screenshot">
+        <!-- <img src="screenshots/note-agent.png" alt="Note記事自動作成エージェントのスクリーンショット"> -->
+        <div class="modal-screenshot-placeholder">
+          <i class="fas fa-image"></i>
+          <span>スクリーンショット準備中</span>
+        </div>
+      </div>
       <p class="modal-section-label"><i class="fas fa-lightbulb"></i>工夫した点</p>
       <ul class="modal-detail-list">
         <li>各工程を独立したエージェントとして設計し、品質を段階的に向上</li>
@@ -1216,7 +1335,96 @@
   </div>
 
   <script>
-    // モーダル開閉
+    // --- スライダー ---
+    var AUTO_INTERVAL = 4000; // 自動切り替え間隔（ミリ秒）
+
+    function initSlider(slider) {
+      var track = slider.querySelector('.modal-slider-track');
+      var slides = slider.querySelectorAll('.modal-slider-slide');
+      var dotsContainer = slider.querySelector('.modal-slider-dots');
+      var prevBtn = slider.querySelector('.modal-slider-btn.prev');
+      var nextBtn = slider.querySelector('.modal-slider-btn.next');
+      var current = 0;
+      var total = slides.length;
+      var autoTimer = null;
+
+      // ドット生成
+      for (var i = 0; i < total; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'modal-slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('data-index', i);
+        dotsContainer.appendChild(dot);
+      }
+      var dots = dotsContainer.querySelectorAll('.modal-slider-dot');
+
+      function goTo(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(function() { goTo(current + 1); }, AUTO_INTERVAL);
+      }
+
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goTo(current - 1);
+        startAuto();
+      });
+
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goTo(current + 1);
+        startAuto();
+      });
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function(e) {
+          e.stopPropagation();
+          goTo(parseInt(dot.getAttribute('data-index')));
+          startAuto();
+        });
+      });
+
+      // 1枚の場合はボタン・ドット非表示
+      if (total <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        dotsContainer.style.display = 'none';
+      }
+
+      return { startAuto: startAuto, stopAuto: stopAuto, reset: function() { goTo(0); } };
+    }
+
+    // 全スライダーを初期化
+    var sliders = {};
+    document.querySelectorAll('.modal-slider').forEach(function(slider) {
+      var modal = slider.closest('.modal-overlay');
+      if (modal) {
+        sliders[modal.id] = initSlider(slider);
+      }
+    });
+
+    // --- モーダル開閉 ---
+    function closeModal(overlay) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      if (sliders[overlay.id]) {
+        sliders[overlay.id].stopAuto();
+        sliders[overlay.id].reset();
+      }
+    }
+
     document.querySelectorAll('.project-card.clickable').forEach(function(card) {
       card.addEventListener('click', function() {
         var modalId = card.getAttribute('data-modal');
@@ -1224,36 +1432,32 @@
         if (modal) {
           modal.classList.add('active');
           document.body.style.overflow = 'hidden';
+          if (sliders[modalId]) {
+            sliders[modalId].startAuto();
+          }
         }
       });
     });
 
-    // 閉じるボタン
     document.querySelectorAll('.modal-close').forEach(function(btn) {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
-        var overlay = btn.closest('.modal-overlay');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        closeModal(btn.closest('.modal-overlay'));
       });
     });
 
-    // オーバーレイクリックで閉じる
     document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
       overlay.addEventListener('click', function(e) {
         if (e.target === overlay) {
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
+          closeModal(overlay);
         }
       });
     });
 
-    // Escキーで閉じる
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         document.querySelectorAll('.modal-overlay.active').forEach(function(overlay) {
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
+          closeModal(overlay);
         });
       }
     });
