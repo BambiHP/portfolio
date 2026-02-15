@@ -431,6 +431,193 @@
       cursor: default;
     }
 
+    /* カードをクリック可能に */
+    .project-card.clickable {
+      cursor: pointer;
+    }
+
+    /* モーダル */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(92, 77, 66, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 560px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: #FDF8F3;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8B7D72;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: #F5A89A;
+      color: white;
+    }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #F5A89A, #F8C4BA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #5C4D42;
+      margin-bottom: 16px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: #8B7D72;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .modal-section-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #F5A89A;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-detail-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .modal-detail-list li {
+      font-size: 13px;
+      color: #5C4D42;
+      line-height: 1.8;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .modal-detail-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 6px;
+      height: 6px;
+      background: #A8D8C8;
+      border-radius: 50%;
+    }
+
+    .modal-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .modal-tech .tech-tag {
+      font-size: 12px;
+      padding: 5px 12px;
+      background: #FFF9F5;
+      border-radius: 12px;
+      color: #8B7D72;
+    }
+
+    .modal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      background: linear-gradient(135deg, #F5A89A, #F8C4BA);
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .modal-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(245, 168, 154, 0.4);
+    }
+
+    .modal-link.disabled {
+      background: linear-gradient(135deg, #C4C4C4, #D4D4D4);
+      cursor: default;
+    }
+
+    .modal-link.disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    @media (max-width: 600px) {
+      .modal-content {
+        padding: 28px 24px;
+        border-radius: 20px;
+        max-height: 85vh;
+      }
+
+      .modal-title {
+        font-size: 18px;
+      }
+    }
+
     @media (max-width: 600px) {
       .achievement-grid {
         grid-template-columns: 1fr;
@@ -898,31 +1085,38 @@
     <section class="section">
       <h2 class="section-title">作成物（個人開発）</h2>
       <div class="project-grid">
-        <div class="project-card">
+
+        <div class="project-card clickable"
+             data-modal="modal-tsundoku">
           <div class="project-icon">
-            <i class="fas fa-music"></i>
+            <i class="fas fa-robot"></i>
           </div>
-          <p class="project-title">課題曲決めツール</p>
-          <p class="project-desc">各メンバーの出席率に合わせてリクエスト曲を重み付け、さらに各担当パートとの割り振りを自動決定</p>
+          <p class="project-title">積読URL管理アプリ自動作成</p>
+          <p class="project-desc">URLを入力すると、「タイトル」「カテゴリ」「要約」を自動取得し登録。一覧で登録したURL一覧が見れる。
+          </p>
           <div class="project-tech">
+            <span class="tech-tag">LLM(API)</span>
             <span class="tech-tag">GAS</span>
             <span class="tech-tag">HTML/CSS</span>
             <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">SpreadSheet</span>
+            <span class="tech-tag">Vibe Cording</span>
           </div>
           <span class="project-link coming-soon">
             <i class="fas fa-clock"></i>Coming Soon
           </span>
         </div>
-        <div class="project-card">
+        <div class="project-card clickable"
+             data-modal="modal-note-agent">
           <div class="project-icon">
             <i class="fas fa-robot"></i>
           </div>
-          <p class="project-title">分析レポート自動作成</p>
-          <p class="project-desc">データを投入すると自動集計〜インサイト抽出・スライド作成まで自動化</p>
+          <p class="project-title">Note記事自動作成エージェント</p>
+          <p class="project-desc">テーマ企画→構成作成→本文作成→添削→Notion登録までを自動化</p>
           <div class="project-tech">
             <span class="tech-tag">AIエージェント</span>
-            <span class="tech-tag">Python</span>
             <span class="tech-tag">Dify</span>
+            <span class="tech-tag">Notion</span>
           </div>
           <span class="project-link coming-soon">
             <i class="fas fa-clock"></i>Coming Soon
@@ -963,5 +1157,106 @@
       <p>&copy; 2026 Bambi. All rights reserved.</p>
     </footer>
   </div>
+  <!-- モーダル: 積読URL管理アプリ -->
+  <div class="modal-overlay" id="modal-tsundoku">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-xmark"></i></button>
+      <div class="modal-icon"><i class="fas fa-robot"></i></div>
+      <h3 class="modal-title">積読URL管理アプリ自動作成</h3>
+      <p class="modal-desc">
+        「あとで読もう」と思ったURLを保存するだけで、LLMが自動でタイトル・カテゴリ・要約を生成。一覧画面で未読記事を効率的に管理できるWebアプリです。
+      </p>
+      <p class="modal-section-label"><i class="fas fa-lightbulb"></i>工夫した点</p>
+      <ul class="modal-detail-list">
+        <li>LLM APIを活用し、URLの内容を自動解析・要約</li>
+        <li>カテゴリの自動分類で手動タグ付けの手間を削減</li>
+        <li>SpreadSheetをDBとして活用し、低コストで運用可能な設計</li>
+        <li>Vibe Codingアプローチで高速プロトタイピング</li>
+      </ul>
+      <p class="modal-section-label"><i class="fas fa-layer-group"></i>技術スタック</p>
+      <div class="modal-tech">
+        <span class="tech-tag">LLM(API)</span>
+        <span class="tech-tag">GAS</span>
+        <span class="tech-tag">HTML/CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">SpreadSheet</span>
+        <span class="tech-tag">Vibe Cording</span>
+      </div>
+      <span class="modal-link disabled">
+        <i class="fas fa-clock"></i>Coming Soon
+      </span>
+    </div>
+  </div>
+
+  <!-- モーダル: Note記事自動作成エージェント -->
+  <div class="modal-overlay" id="modal-note-agent">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-xmark"></i></button>
+      <div class="modal-icon"><i class="fas fa-robot"></i></div>
+      <h3 class="modal-title">Note記事自動作成エージェント</h3>
+      <p class="modal-desc">
+        テーマの企画から構成作成、本文執筆、添削、Notion登録までの記事作成プロセスを一気通貫で自動化するAIエージェントです。
+      </p>
+      <p class="modal-section-label"><i class="fas fa-lightbulb"></i>工夫した点</p>
+      <ul class="modal-detail-list">
+        <li>各工程を独立したエージェントとして設計し、品質を段階的に向上</li>
+        <li>Difyを活用したノーコードでのワークフロー構築</li>
+        <li>Notion APIと連携し、完成記事を自動で登録・管理</li>
+      </ul>
+      <p class="modal-section-label"><i class="fas fa-layer-group"></i>技術スタック</p>
+      <div class="modal-tech">
+        <span class="tech-tag">AIエージェント</span>
+        <span class="tech-tag">Dify</span>
+        <span class="tech-tag">Notion</span>
+      </div>
+      <span class="modal-link disabled">
+        <i class="fas fa-clock"></i>Coming Soon
+      </span>
+    </div>
+  </div>
+
+  <script>
+    // モーダル開閉
+    document.querySelectorAll('.project-card.clickable').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var modalId = card.getAttribute('data-modal');
+        var modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // 閉じるボタン
+    document.querySelectorAll('.modal-close').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var overlay = btn.closest('.modal-overlay');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // オーバーレイクリックで閉じる
+    document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Escキーで閉じる
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(function(overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+  </script>
 </body>
 </html>
